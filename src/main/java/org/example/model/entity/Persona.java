@@ -1,41 +1,63 @@
 package org.example.model.entity;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.model.enums.TipoIdentificacion;
-import org.springframework.data.annotation.Id;
+import org.example.model.enums.GrupoSanguineo;
+import org.example.model.enums.RH;
+import org.example.model.enums.Sexo;
+import java.time.LocalDate;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "PERSONA")
 @MappedSuperclass
-public abstract class Persona extends BaseEntity{
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Persona extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false)
     private String apellido;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo_identificacion_id")
+    @Column(name = "tipo_identificacion")
     private TipoIdentificacion tipoIdentificacion;
 
+    @Column(name = "numero_identificacion", unique = true, nullable = false)
     private String numeroIdentificacion;
 
     private String telefono;
 
+    @Column(unique = true)
     private String email;
 
     private String direccion;
 
-    private String fechaNacimiento;
+    @Column(name = "fecha_nacimiento")
+    private LocalDate fechaNacimiento;
 
-    private String sexo;
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "grupo_sanguineo")
+    private GrupoSanguineo grupoSanguineo;
+
+    @Enumerated(EnumType.STRING)
+    private RH rh;
 
 }

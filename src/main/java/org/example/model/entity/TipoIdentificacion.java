@@ -1,14 +1,20 @@
 package org.example.model.entity;
 
-@Entity
-@Table(name = "TIPOS_IDENTIFICACION")
-public class TipoIdentificacion {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import lombok.Getter;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Getter
+@Entity
+@Table(name = "TIPO_IDENTIFICACION")
+public class TipoIdentificacion extends BaseEntity{
+
+    private String codigo;
 
     @Column(nullable = false)
     private String nombre;
+
+    private String descripcion;
 
 }
