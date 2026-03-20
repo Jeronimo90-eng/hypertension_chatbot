@@ -15,6 +15,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     Optional<Paciente> findByEmail(String email);
 
-    List<Paciente> findByMedicoId(Long medicoId);
+    List<Paciente> findByMedico_Id(Long medicoId);
 
 }

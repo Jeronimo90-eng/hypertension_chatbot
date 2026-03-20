@@ -1,6 +1,8 @@
 package org.example.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Inheritance;
@@ -34,7 +36,13 @@ public abstract class Persona extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo_identificacion_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private TipoIdentificacion tipoIdentificacion;
+
+    @JsonProperty("tipoIdentificacionId")
+    public Long getTipoIdentificacionId() {
+        return tipoIdentificacion != null ? tipoIdentificacion.getId() : null;
+    }
 
     @Column(name = "numero_identificacion", unique = true, nullable = false)
     private String numeroIdentificacion;

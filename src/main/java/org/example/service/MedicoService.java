@@ -23,7 +23,7 @@ public class MedicoService {
     // Lista la información de sus Pacientes
     @Transactional(readOnly = true)
     public List<Paciente> listarPacientesAsignados(Long medicoId) {
-        return pacienteRepository.findByMedicoId(medicoId);
+        return pacienteRepository.findByMedico_Id(medicoId);
     }
 
     // Agrega un mensaje con observaciones a cada uno de los registros

@@ -13,18 +13,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TipoIdentificacionController {
 
-    private final TipoIdentificacionRepository repository;
+    private final TipoIdentificacionRepository tipoIdentificacionRepository;
 
     // Crear un nuevo tipo de indentifacion (Ej: Cédula, Pasaporte)
     @PostMapping
     public ResponseEntity<TipoIdentificacion> crear(@RequestBody TipoIdentificacion tipo) {
-        return ResponseEntity.ok(repository.save(tipo));
+        return ResponseEntity.ok(tipoIdentificacionRepository.save(tipo));
     }
 
     // Lista todos los tipos de identificacion para que el Chatbot
     @GetMapping
     public ResponseEntity<List<TipoIdentificacion>> listarTodo() {
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(tipoIdentificacionRepository.findAll());
     }
 
 }

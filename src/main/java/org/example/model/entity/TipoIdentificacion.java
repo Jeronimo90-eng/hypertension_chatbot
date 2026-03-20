@@ -28,5 +28,5 @@ public class TipoIdentificacion {
     private String nombre;
 
     private String descripcion;
-
+    
 }
