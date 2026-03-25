@@ -5,7 +5,6 @@ import org.example.model.entity.SignoVital;
 import org.example.service.SignoVitalService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
